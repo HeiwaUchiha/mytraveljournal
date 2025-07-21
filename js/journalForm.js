@@ -62,8 +62,8 @@ export function enterData(){
   
           <select id="type">
             <option value="" hidden>Travel Type</option>
-            <option value="solo">Solo</option>
-            <option value="group">Group</option>
+            <option value="Solo">Solo</option>
+            <option value="Group">Group</option>
           </select>
   
           <select id="country">
@@ -97,8 +97,11 @@ export function enterData(){
           <input type="file" id="images" accept="image/*" hidden multiple />
           <div id="preview-container"></div>
   
-          <button type="button" id="cancel"><i class="material-symbols-outlined">close</i> Cancel</button>
-          <button type="submit" id="save"><i class="material-symbols-outlined">save</i> Save Entry</button>
+          <div class="major-btn">
+            <button type="button" id="back"><i class="material-symbols-outlined">arrow_back</i> Back</button>
+            <button type="button" id="cancel"><i class="material-symbols-outlined">close</i> Cancel</button>
+            <button type="submit" id="save"><i class="material-symbols-outlined">save</i> Save Entry</button>
+          </div>
         </form>
       `;
     }
@@ -129,6 +132,7 @@ export function enterData(){
     function setupFormEvents() {
       const form = document.getElementById("journal-entry-form");
       const cancelBtn = document.getElementById("cancel");
+      const backBtn = document.getElementById("back")
     
       const mainImageInput = document.getElementById("main-image");
       const galleryInput = document.getElementById("images");
@@ -136,6 +140,9 @@ export function enterData(){
     
       const imageLabelMain = document.querySelector('label[for="main-image"]');
       const imageLabelGallery = document.querySelector('label[for="images"]');
+
+      const entryFormSection = document.getElementById("entry-form");
+      const addEntrySection = document.getElementById("add-entry");
     
       // Optional preview of main image and gallery
       mainImageInput?.addEventListener("change", () => {
@@ -192,11 +199,15 @@ export function enterData(){
           title: form.title.value.trim(),
           place: form.place.value.trim(),
           type: form.type.value,
-          country: form.country.value,
+          country: form.country.value.toUpperCase(),
           startDate: form["start-date"].value,
           endDate: form["end-date"].value,
           location: form.location.value.trim(),
-          tags: form.tag.value.split(",").map(tag => tag.trim()).filter(Boolean),
+          tags: form.tag.value
+                              .split(",")
+                              .map(tag => tag.trim())
+                              .filter(Boolean)
+                              .map(tag => (tag.startsWith("#") ? tag : `#${tag}`)),
           description: form.description.value.trim(),
           story: form.story.value.trim(),
           mainImage: await convertSingleToBase64(mainImageInput.files[0]),
@@ -218,6 +229,24 @@ export function enterData(){
         imageLabelGallery.textContent = "Upload Other Photos";
       });
     
+      backBtn?.addEventListener("click", () => {
+        const resolved = JSON.parse(localStorage.getItem("journalEntries")) || [];
+    
+        form.reset();
+        previewContainer.innerHTML = "";
+        imageLabelMain.textContent = "Main Image";
+        imageLabelGallery.textContent = "Upload Other Photos";
+    
+        if (resolved.length === 0) {
+          addEntrySection.style.display = "flex";
+          entryFormSection.style.display = "none";
+        } else {
+          entryFormSection.style.display = "none";
+          viewTripEntry();
+        }
+      });
+
+      
       function convertSingleToBase64(file) {
         return new Promise((resolve, reject) => {
           if (!file) return resolve(null);
