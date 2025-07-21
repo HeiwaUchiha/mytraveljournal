@@ -23,7 +23,10 @@
 :root{
     --background: linear-gradient(rgba(244, 244, 244, 0.888), rgba(244, 244, 244, 0.888)), url(assets/freepik__adjust__873.png);
     --hover: linear-gradient(rgba(244, 244, 244, 0.544), rgba(244, 244, 244, 0.544));
-    --background2: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo1.png);
+    --background1: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo1.png);
+    --background2: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo2.png);
+    --background3: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo3.png);
+    --background4: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo4.png);
     --color-1: #9faf9a;
     --color-2: #d7e4d3;
     --color-3: #337357;
@@ -36,7 +39,10 @@
 .dark-theme{
     --background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/freepik__adjust__873.png);
     --hover: linear-gradient(rgba(31, 31, 31, 0.4), rgba(31, 31, 31, 0.4));
-    --background2: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo1.png);
+    --background1: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo1.png);
+    --background2: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo2.png);
+    --background3: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo3.png);
+    --background4: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo4.png);
     --color-1: #2e3e37;
     --color-2: #337357;
     --color-3: #d7e4d3;
