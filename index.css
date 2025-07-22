@@ -31,7 +31,7 @@ body{
     --shadow: 0px 1px 2px 0px #0000000F, 0px 1px 3px 0px #0000001A;
 }
 .dark-theme{
-    --background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/freepik__adjust__873.png);
+    --background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/freepik__adjust__873.jpg);
     --background1: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo1.png);
     --background2: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo2.png);
     --background3: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo3.png);
