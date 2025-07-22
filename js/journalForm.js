@@ -62,8 +62,26 @@ export function enterData(){
   
           <select id="type">
             <option value="" hidden>Travel Type</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Leisure">Leisure</option>
+            <option value="Business">Business</option>
+            <option value="Cultural">Cultural</option>
             <option value="Solo">Solo</option>
-            <option value="Group">Group</option>
+            <option value="Family">Family</option>
+            <option value="Romantic">Romantic</option>
+            <option value="Backpacking">Backpacking</option>
+            <option value="Road Trip">Road Trip</option>
+            <option value="Eco-Tourism">Eco-Tourism</option>
+            <option value="Religious">Religious</option>
+            <option value="Wellness/Retreat">Wellness/Retreat</option>
+            <option value="Cruise">Cruise</option>
+            <option value="Volunteer/Humanitarian">Volunteer/Humanitarian</option>
+            <option value="Group Tour">Group Tour</option>
+            <option value="Weekend Getaway">Weekend Getaway</option>
+            <option value="Festival/Event">Festival/Event</option>
+            <option value="Study/Exchange Program">Study/Exchange Program</option>
+            <option value="Staycation">Staycation</option>
+            <option value="Other">Other</option>
           </select>
   
           <select id="country">
