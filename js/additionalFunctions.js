@@ -225,6 +225,7 @@ export function addEntry() {
 export function searchEntry() {
     const searchInput = document.getElementById("search-bar");
     const searchBtn = document.getElementById("search");
+    const addEntrySection = document.getElementById("add-entry");
   
     searchBtn?.addEventListener("click", (e) => {
       e.preventDefault();
@@ -234,7 +235,9 @@ export function searchEntry() {
         alert("Please enter something to search.");
         return;
       }
-  
+      
+      
+
       const allEntries = JSON.parse(localStorage.getItem("journalEntries")) || [];
   
       const filtered = allEntries.filter(entry => {
@@ -248,8 +251,26 @@ export function searchEntry() {
           entry.endDate.includes(query)
         );
       });
+
+      function buildNewAddEntry(){
+        return `<h1>Entry not Found!</h1>
+                <p>Perhaps you can add it</p>
+                <button class="add-btn">+ Add Entry</button>
+                <button class="back-btn">Go Back</button>
+                `
+      }
   
-      console.log("Filtered entries:", filtered);
+      if (!filtered.includes(query)) {
+        console.log("Not a match");
+        addEntrySection.style.display = "flex"
+        addEntrySection.innerHTML = buildNewAddEntry()
+      }
+
+      const goBackBtn = document.querySelector(".back-btn");
+
+      goBackBtn?.addEventListener('click', () =>{
+        window.location.href = "journal.html"
+      })
 
     if (typeof viewTripEntry === "function") {
       viewTripEntry(filtered);
@@ -263,9 +284,8 @@ export function searchEntry() {
     const backButton = document.getElementById("back2")
 
     backButton?.addEventListener('click', () => {
-      window.location.href = "/pages/journal.html"
+      window.location.href = "journal.html"
       localStorage.removeItem("currentEntryId");
-
     })
   }
 
@@ -275,7 +295,7 @@ export function searchEntry() {
       button.addEventListener("click", () => {
         const entryId = button.getAttribute("data-id");
         localStorage.setItem("currentEntryId", entryId); 
-        window.location.href = "/pages/preview.html?preview=view";
+        window.location.href = "preview.html?preview=view";
       });
     });
   }  
@@ -343,7 +363,7 @@ export function searchEntry() {
       button.addEventListener("click", () => {
         const entryId = button.getAttribute("data-id");
         localStorage.setItem("currentEntryId", entryId); 
-        window.location.href = "/pages/preview.html?preview=edit";
+        window.location.href = "preview.html?preview=edit";
       });
     });
   }

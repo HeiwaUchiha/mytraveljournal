@@ -126,12 +126,16 @@
     color: var(--color-3);
     margin-bottom: 20px;
 }
-.add-btn{
+#add-entry p{
+    margin-bottom: 30px;
+}
+.add-btn, .back-btn{
     width: 300px;
     background: transparent;
     padding: 10px;
     border: 2px dashed var(--color-3);
     border-radius: 8px;
+    margin-bottom: 20px;
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
     font-weight: 600;
@@ -140,7 +144,7 @@
     box-shadow: none;
     transition: 0.5s;
 }
-.add-btn:hover{
+.add-btn:hover, .back-btn:hover{
     background: var(--color-2);
 }
 #entry-form {

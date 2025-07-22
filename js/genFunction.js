@@ -82,7 +82,7 @@ export function isLoggedIn() {
     const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
   
     if (userData && userData.loggedIn) {
-      window.location.href = "/pages/journal.html";
+      window.location.href = "journal.html";
     } else {
       window.location.href = "register.html?form=login";
     }

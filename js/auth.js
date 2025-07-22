@@ -104,7 +104,7 @@ export function setupAuthForms() {
           const email = form.querySelector("#email-input").value.trim();
           const userData = { username: username.value.trim(), email, password: password.value, loggedIn: true };
           localStorage.setItem("travelJournalUser", JSON.stringify(userData));
-          window.location.href = "/pages/journal.html";
+          window.location.href = "journal.html";
         } else {
           const savedData = JSON.parse(localStorage.getItem("travelJournalUser"));
           if (!savedData || savedData.username !== username.value.trim() || savedData.password !== password.value) {
@@ -114,7 +114,7 @@ export function setupAuthForms() {
           } else {
             savedData.loggedIn = true;
             localStorage.setItem("travelJournalUser", JSON.stringify(savedData));
-            window.location.href = "/pages/journal.html";
+            window.location.href = "journal.html";
           }
         }
       }
