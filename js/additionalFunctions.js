@@ -332,7 +332,7 @@ export function searchEntry() {
         </span>
         <span class="details2">
           <h4>${capitalizeFirstLetter(selectedEntry.type)}</h4>
-          <h4>${selectedEntry.tags.map(tag => `#${tag}`).join(" ")}</h4>
+          <h4>${selectedEntry.tags.map(tag => `${tag}`).join(" ")}</h4>
         </span>
         <div class="description">
           <h2>Description:</h2>

@@ -478,6 +478,7 @@
 .layer .delete-btn:hover{
     background: rgb(189, 2, 2);
 }
+
 @media (max-width: 536px){
     #trip-entry{
         top: 128px;
@@ -513,6 +514,7 @@
         font-size: 10px;
     }
 }
+
 
 @media screen and (max-width: 566px) {
     #entry-form form{
