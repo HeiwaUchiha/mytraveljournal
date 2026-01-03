@@ -1,25 +1,6 @@
 import { countries } from "./countries.js";
 import { viewTripEntry } from "./tripEntry.js";
 
-export function logData() {
-    const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
-
-    //REDIRECT IF NOT LOGGED IN
-    if (!userData || !userData.loggedIn) {
-      window.location.href = "register.html?form=login";
-    } else {
-      document.getElementById("username").textContent = userData.username;
-      document.getElementById("username2").textContent = userData.username;
-    }
-
-    // LOGOUT
-    document.getElementById("logout").addEventListener("click", () => {
-      const updated = { ...userData, loggedIn: false };
-      localStorage.setItem("travelJournalUser", JSON.stringify(updated));
-      window.location.href = "register.html?form=login";
-})
-};
-
 export function dropdown() {
     document.querySelector(".dropbtn").addEventListener("click", () =>{
         document.getElementById("myDropdown").classList.toggle("show");
@@ -37,6 +18,27 @@ export function dropdown() {
       }
     }
 }
+
+export function logData() {
+    const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
+
+    //REDIRECT IF NOT LOGGED IN
+    if (!userData || !userData.loggedIn) {
+      window.location.href = "register.html?form=login";
+    } else {
+      document.getElementById("username").textContent = userData.username;
+      document.getElementById("username2").textContent = userData.username;
+    }
+
+    // LOGOUT
+    document.querySelectorAll(".logout").forEach(button => 
+      { button.addEventListener("click", () => {
+      const updated = { ...userData, loggedIn: false };
+      localStorage.setItem("travelJournalUser", JSON.stringify(updated));
+      window.location.href = "register.html?form=login";
+})})
+};
+
 
 export function enterData(){
   

@@ -89,7 +89,7 @@
 }
 .reg-container h1{
     font-size: 36px;
-    margin: 15px 0;
+    margin: 7px 0;
 }
 .form-box{
     position: absolute;
@@ -275,7 +275,7 @@ footer{
 /* -------- MEDIA QUERIES -------- */
 @media screen and (max-width:650px) {
     .reg-container{
-        height: calc(115vh - 20px);
+        height: calc(90vh - 20px);
         margin-top: 90px;
         margin-bottom: 30px;
     }
@@ -297,7 +297,7 @@ footer{
     .form-box{
         bottom: 5%;
         width: 100%;
-        height: 70%;
+        height: 80%;
     }
     .toggle-box::before{
         left: 0;
