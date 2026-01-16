@@ -74,6 +74,13 @@
 .dash-details-1 p{
     text-align: center;
 }
+.username{
+    font-weight: 700;
+    transition: 0.5s;
+}
+.username:hover{
+    color: var(--color-3);
+}
 .dash-details-2{
     display: none;
 }

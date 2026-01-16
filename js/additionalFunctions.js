@@ -281,11 +281,13 @@ export function searchEntry() {
   };
 
   export function backEntry(){
-    const backButton = document.getElementById("back2")
+    const backButton = document.querySelectorAll(".back2")
 
-    backButton?.addEventListener('click', () => {
-      window.location.href = "journal.html"
-      localStorage.removeItem("currentEntryId");
+    backButton.forEach(button => {
+      button.addEventListener('click', () => {
+        window.location.href = 
+        localStorage.removeItem("currentEntryId");
+      })
     })
   }
 

@@ -2,21 +2,19 @@ import { countries } from "./countries.js";
 import { viewTripEntry } from "./tripEntry.js";
 
 export function dropdown() {
-    document.querySelector(".dropbtn").addEventListener("click", () =>{
-        document.getElementById("myDropdown").classList.toggle("show");
-    })
-}
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
+  const btn = document.querySelector(".dropbtn");
+  const menu = document.getElementById("myDropdown");
+
+  if (!btn || !menu) return;
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.toggle("show");
+  });
+
+  window.addEventListener("click", () => {
+    menu.classList.remove("show");
+  });
 }
 
 export function logData() {
@@ -26,8 +24,9 @@ export function logData() {
     if (!userData || !userData.loggedIn) {
       window.location.href = "register.html?form=login";
     } else {
-      document.getElementById("username").textContent = userData.username;
-      document.getElementById("username2").textContent = userData.username;
+      document.querySelectorAll(".username").forEach(el => {
+        el.textContent = userData.username
+      })
     }
 
     // LOGOUT

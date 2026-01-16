@@ -99,10 +99,12 @@ main{
     display: flex;
     flex-direction: column;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+
 }
 .hero-head{
     color: var(--color-3);
     margin-bottom: 50px;
+
 }
 .hero-head h1{
     font-size: 60px;
