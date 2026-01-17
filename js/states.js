@@ -3,22 +3,39 @@ export const STATES = {
     LIST: "list",
     FORM: "form",
     PREVIEW_VIEW: "preview-view",
-    PREVIEW_EDIT: "preview-edit"
+    PREVIEW_EDIT: "preview-edit",
+    ACCOUNT: "account"
   };
   
-  let currentState = null;
-  let previousState = null;
+  const KEY = "stateHistory";
   
-  export function setState(newState) {
-    previousState = currentState;
-    currentState = newState;
+  function getHistory() {
+    return JSON.parse(sessionStorage.getItem(KEY)) || [];
   }
   
-  export function getPreviousState() {
-    return previousState;
+  function saveHistory(history) {
+    sessionStorage.setItem(KEY, JSON.stringify(history));
+  }
+  
+  export function pushState(state) {
+    const history = getHistory();
+    history.push(state);
+    saveHistory(history);
+  }
+  
+  export function popState() {
+    const history = getHistory();
+    const popped = history.pop();
+    saveHistory(history);
+    return popped;
   }
   
   export function getCurrentState() {
-    return currentState;
+    const history = getHistory();
+    return history[history.length - 1] || null;
+  }
+  
+  export function clearStates() {
+    sessionStorage.removeItem(KEY);
   }
   

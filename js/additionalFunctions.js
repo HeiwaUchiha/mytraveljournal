@@ -1,5 +1,6 @@
 import { countries } from "./countries.js";
 import { viewTripEntry } from "./tripEntry.js";
+import { STATES, pushState, popState, getCurrentState } from './states.js';
 
 export function addEntry() {
     const addButton = document.getElementById("add");
@@ -7,6 +8,7 @@ export function addEntry() {
 
     addButton?.addEventListener('click', () =>{
         document.querySelector(".trip-nav").style.display = "none";
+        history.replaceState(null, "", "?state=form");
         entryFormSection.style.display = "block";
         entryFormSection.innerHTML = buildFormHTML();
         document.getElementById("trip-entry").style.display = "none";
@@ -285,9 +287,58 @@ export function searchEntry() {
 
     backButton.forEach(button => {
       button.addEventListener('click', () => {
-        window.location.href = 
+        window.location.href = "journal.html"
         localStorage.removeItem("currentEntryId");
       })
+    })
+  }
+
+  export function accountOpen() {
+    const user = document.querySelectorAll(".username")
+
+    user.forEach(button => 
+      { button.addEventListener("click",() => {
+        pushState(getCurrentState());
+        pushState(STATES.ACCOUNT);
+        window.location.href = "user.html";
+      })
+    })
+}
+
+  export function userBackEntry(){
+    const userBackBtn = document.querySelector(".user-back-nav")
+
+    userBackBtn.addEventListener("click", () => {
+      popState(); // remove ACCOUNT
+
+  const previous = popState();
+
+  if (!previous) {
+    window.location.href = "/journal.html";
+    return;
+  }
+
+  switch (previous) {
+    case STATES.ADD:
+    case STATES.LIST:
+      window.location.href = "/journal.html";
+      break;
+
+    case STATES.FORM:
+      window.location.href = "/journal.html?state=form";
+      break;
+
+    case STATES.PREVIEW_VIEW:
+      window.location.href = "/pages/preview.html?preview=view";
+      break;
+
+    case STATES.PREVIEW_EDIT:
+      window.location.href = "/pages/preview.html?preview=edit";
+      break;
+
+    default:
+      window.location.href = "/journal.html";
+  }
     })
   }
 
@@ -594,7 +645,6 @@ export function searchEntry() {
         }
 
       } else {
-        console.log(window.location.href); 
       }
   }
   export function deleteEntry() {

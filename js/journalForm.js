@@ -1,4 +1,5 @@
 import { countries } from "./countries.js";
+import { pushState, STATES } from "./states.js";
 import { viewTripEntry } from "./tripEntry.js";
 
 export function dropdown() {
@@ -37,7 +38,6 @@ export function logData() {
       window.location.href = "register.html?form=login";
 })})
 };
-
 
 export function enterData(){
   
@@ -291,6 +291,9 @@ export function checkExistingEntries() {
     viewTripEntry();
     document.getElementById("add-entry").style.display = "none";
   } else {
+    pushState(STATES.ADD);
+    console.log(STATES);
+    
     document.getElementById("add-entry").style.display = "flex";
     document.getElementById("entry-form").style.display = "none";
   }
