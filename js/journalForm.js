@@ -290,10 +290,10 @@ export function checkExistingEntries() {
   if (savedEntries.length > 0) {
     viewTripEntry();
     document.getElementById("add-entry").style.display = "none";
+    document.getElementById("entry-form").style.display = "none";
   } else {
     pushState(STATES.ADD);
-    console.log(STATES);
-    
+    console.log("ADD");
     document.getElementById("add-entry").style.display = "flex";
     document.getElementById("entry-form").style.display = "none";
   }

@@ -142,7 +142,7 @@ form{
 }
 .input-box input::placeholder{
     font-weight: 300;
-    color: #9faf9a;
+    color: var(--color-2);
 }
 .input-box .toggle-pass{
     right: 45px;
@@ -154,6 +154,25 @@ form{
     transform: translateY(-50%);
     color: var(--color-2);
     cursor: pointer;
+}
+#gender .hiden{
+    font-weight: 300; 
+    display: none;
+}
+#gender{
+    width: 100%;
+    padding: 10px 80px 13px 20px;
+    background: var(--color-3);
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    appearance: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: var(--color-2);
+}
+.input-box .gend{
+    right: 45px;
 }
 .error{
     color: red;
@@ -275,7 +294,7 @@ footer{
 /* -------- MEDIA QUERIES -------- */
 @media screen and (max-width:650px) {
     .reg-container{
-        height: calc(90vh - 20px);
+        height: calc(110vh - 20px);
         margin-top: 90px;
         margin-bottom: 30px;
     }

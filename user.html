@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="/css/journal.css">
     <link rel="stylesheet" href="/css/preview.css">
+    <link rel="stylesheet" href="/css/user.css">
     <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="/assets/logo-favicon.png" type="image/x-icon">
     <style>
@@ -37,11 +38,57 @@
         <button type="button" class="user-back-nav"><i class="material-symbols-outlined">arrow_back</i> Back</button>
     </section>
 
+    <div class="user-hero">
+      <h1>Account Settings</h1>
+      <h4>Manage your profile and account</h4>
+    </div>
 
+    <section class="user-control">
+      <div class="profile">
+        <h2>Profile Information</h2>
+        <div class="profile-info">
+          <div class="pic">
+            <i class="material-symbols-outlined">person</i>
+            <button id="change-pic">Change Photo</button>
+          </div>
+          <div class="user-details">
+            <span><label for="username">Username:</label><input type="text" name="username" value=""></span>
+            <span><label for="email">Email:</label><input type="email" name="email" value=""></span>
+            <span>
+              <label for="gender">Gender:</label>
+              <select id="gender">
+                <option value="" hidden></option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+          </span>
+            <span>
+              <span></span>
+              <button type="submit" class="profile-edit">Save Changes</button>
+            </span>
+          </div>
+        </div>
+        </div>
 
+        <div class="ch-password">
+          <h2>Change Password</h2>
+            <div class="password-details">
+              <span><label for="current-password">Current Password:</label><input type="password" value=""></span>
+              <span><label for="new-password">New Password:</label><input type="password" value=""></span>
+              <span><label for="confirm-new-password">Confirm New Password:</label><input type="password" value=""></span>
+              <button type="submit" class="profile-edit pass-change">Update Password</button>
+            </div>
+        </div>
 
-
-
+        <div class="danger">
+          <h2>Danger Zone</h2>
+            <div class="delete-acc">
+              <p>Permanently delete your account and all associated data. This action cannot be undone</p>
+              <button type="submit" class="profile-delete">Delete Account</button>
+            </div>
+        </div>
+    </section>
 
     <script type="module" src="/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

@@ -8,13 +8,15 @@ export function addEntry() {
 
     addButton?.addEventListener('click', () =>{
         document.querySelector(".trip-nav").style.display = "none";
-        history.replaceState(null, "", "?state=form");
         entryFormSection.style.display = "block";
         entryFormSection.innerHTML = buildFormHTML();
         document.getElementById("trip-entry").style.display = "none";
         countryPopu();
         locationAlert();
         setupFormEvents();
+        pushState(STATES.FORM);
+        console.log(getCurrentState())
+        
     })
 
     function buildFormHTML() {
@@ -199,9 +201,10 @@ export function addEntry() {
             if (resolved.length === 0) {
               addEntrySection.style.display = "flex";
               entryFormSection.style.display = "none";
+              history.replaceState(null, "", "")
             } else {
               entryFormSection.style.display = "none";
-              location.reload();
+              window.location.href = "journal.html"
             }
           });
     
@@ -321,23 +324,23 @@ export function searchEntry() {
   switch (previous) {
     case STATES.ADD:
     case STATES.LIST:
-      window.location.href = "/journal.html";
+      window.location.href = "journal.html";
       break;
 
     case STATES.FORM:
-      window.location.href = "/journal.html?state=form";
+      window.location.href = "journal.html";
       break;
 
     case STATES.PREVIEW_VIEW:
-      window.location.href = "/pages/preview.html?preview=view";
+      window.location.href = "preview.html?preview=view";
       break;
 
     case STATES.PREVIEW_EDIT:
-      window.location.href = "/pages/preview.html?preview=edit";
+      window.location.href = "preview.html?preview=edit";
       break;
 
     default:
-      window.location.href = "/journal.html";
+      window.location.href = "journal.html";
   }
     })
   }
@@ -349,6 +352,7 @@ export function searchEntry() {
         const entryId = button.getAttribute("data-id");
         localStorage.setItem("currentEntryId", entryId); 
         window.location.href = "preview.html?preview=view";
+        pushState(STATES.PREVIEW_VIEW);
       });
     });
   }  
@@ -417,6 +421,7 @@ export function searchEntry() {
         const entryId = button.getAttribute("data-id");
         localStorage.setItem("currentEntryId", entryId); 
         window.location.href = "preview.html?preview=edit";
+        pushState(STATES.PREVIEW_EDIT);
       });
     });
   }
@@ -625,7 +630,7 @@ export function searchEntry() {
         
           localStorage.setItem("journalEntries", JSON.stringify(entries));
           alert("Entry updated successfully!");
-          window.location.href = "/pages/journal.html"; // or redirect to preview
+          window.location.href = "journal.html"; // or redirect to preview
         });
 
         function convertSingleToBase64(file) {

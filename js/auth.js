@@ -75,25 +75,36 @@ export function setupAuthForms() {
         if (formType === "register") {
           const email = form.querySelector("#email-input");
           const confirm = form.querySelector("#confirm-pass");
-  
+          const gender = form.querySelector("#gender");
+        
+          // EMAIL
           if (!email.value.trim()) {
             errors.push("Email is required");
             email.parentElement.classList.add("incorrect");
-          } else if (!/^\S+@\S+\.\S+$/.test(email.value)) {
+          } else if (!/^\S+@\S+\.\S+$/.test(email.value.trim())) {
             errors.push("Enter a valid email address");
             email.parentElement.classList.add("incorrect");
           }
-  
+        
+          // PASSWORD LENGTH
           if (password.value.length < 8) {
             errors.push("Password must be at least 8 characters");
             password.parentElement.classList.add("incorrect");
           }
-  
+        
+          // PASSWORD MATCH
           if (password.value !== confirm.value) {
             errors.push("Passwords do not match");
             confirm.parentElement.classList.add("incorrect");
           }
+        
+          // GENDER (SELECT)
+          if (!gender.value) {
+            errors.push("Please select a gender");
+            gender.parentElement.classList.add("incorrect");
+          }
         }
+        
   
         if (errors.length > 0) {
           errorMessage.innerHTML = errors.join(". ");
@@ -102,7 +113,7 @@ export function setupAuthForms() {
   
         if (formType === "register") {
           const email = form.querySelector("#email-input").value.trim();
-          const userData = { username: username.value.trim(), email, password: password.value, loggedIn: true };
+          const userData = { username: username.value.trim(), email, gender: gender.value, password: password.value, loggedIn: true };
           localStorage.setItem("travelJournalUser", JSON.stringify(userData));
           window.location.href = "journal.html";
         } else {

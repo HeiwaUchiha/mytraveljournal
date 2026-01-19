@@ -9,7 +9,7 @@ body{
   overflow-x: hidden;
   margin: 0;
   padding: 0; 
-scroll-behavior: smooth;
+  scroll-behavior: smooth;
   background: var(--background);
   scroll-behavior: smooth;
   background-attachment: fixed;
