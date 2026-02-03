@@ -293,7 +293,6 @@ export function checkExistingEntries() {
     document.getElementById("entry-form").style.display = "none";
   } else {
     pushState(STATES.ADD);
-    console.log("ADD");
     document.getElementById("add-entry").style.display = "flex";
     document.getElementById("entry-form").style.display = "none";
   }

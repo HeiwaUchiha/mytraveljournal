@@ -297,15 +297,11 @@ export function searchEntry() {
   }
 
   export function accountOpen() {
-    const user = document.querySelectorAll(".username")
-
-    user.forEach(button => 
-      { button.addEventListener("click",() => {
+   
+    if (window.location.href.includes("user.html")) {
         pushState(getCurrentState());
         pushState(STATES.ACCOUNT);
-        window.location.href = "user.html";
-      })
-    })
+    }
 }
 
   export function userBackEntry(){
@@ -674,4 +670,318 @@ export function searchEntry() {
       });
     });
   }
-  
+
+  export function viewDetails() {
+    const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
+    const userChange = document.getElementById("user-change");
+    const emailChange = document.getElementById("email-change");
+    const genderChange = document.getElementById("gender-change");
+    const currPass = document.querySelector(".curr-pass");
+
+    if (!userData) {
+      alert("No user found");
+      window.location.href = "register.html";
+    }
+
+    userChange.value = userData.username
+    emailChange.value = userData.email
+    genderChange.value = userData.gender
+    currPass.value = "********"
+  }
+
+  export function editDetails() {
+    const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
+    const editProfile = document.querySelector(".profile-edit");
+    const userChange = document.getElementById("user-change");
+    const emailChange = document.getElementById("email-change");
+    const genderChange = document.getElementById("gender-change");
+    const imgChange = document.getElementById("change-pic");
+    const proImgFile = document.getElementById("profile-pic");
+    const displayImg = document.getElementById("display-pic");
+    const saveProfile = document.querySelector(".profile-save");
+
+    editProfile.addEventListener("click", () => {
+      userChange.removeAttribute("readonly");
+      emailChange.removeAttribute("readonly");
+      genderChange.removeAttribute("readonly");
+      imgChange.removeAttribute("disabled");
+      saveProfile.style.display = "block"
+    });
+    
+
+    imgChange.addEventListener("click", () => {
+      proImgFile.click();
+    });
+    
+    proImgFile?.addEventListener("change", () => {
+      const file = proImgFile.files[0];
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = () => {
+            displayImg.src = reader.result;
+
+            const user = JSON.parse(localStorage.getItem("travelJournalUser"));
+            user.profilePicture = reader.result;
+            localStorage.setItem("travelJournalUser", JSON.stringify(user));
+
+          };
+
+        reader.readAsDataURL(file);
+        
+      }
+    });
+
+    saveProfile.addEventListener("click", () => {
+      const errors = [];
+    
+      const username = userChange.value.trim();
+      const email = emailChange.value.trim();
+      const gender = genderChange.value;
+    
+      if (!username) errors.push("Username is required");
+      if (!email) {
+        errors.push("Email is required");
+      } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+        errors.push("Invalid email format");
+      }
+    
+      if (!gender) errors.push("Gender is required");
+    
+      if (errors.length > 0) {
+        alert(errors.join("\n"));
+        return;
+      }
+    
+      const updatedUser = {
+        ...userData,
+        username,
+        email,
+        gender,
+      };
+    
+      localStorage.setItem("travelJournalUser", JSON.stringify(updatedUser));
+      
+      userChange.setAttribute("readonly", "");
+      emailChange.setAttribute("readonly", "");
+      genderChange.setAttribute("readonly", "");
+      imgChange.setAttribute("disabled", "");
+      saveProfile.style.display = "none"
+    
+      alert("Profile updated successfully");
+    });
+  }
+
+  export function allImageDisplay() {
+    const allDisplayPic = document.querySelectorAll(".display-pic")
+    const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
+    
+    if (userData?.profilePicture) {
+      allDisplayPic.forEach(img => {
+        img.src = userData.profilePicture;
+      });
+    }
+  }
+
+  export function imageDisplay() {
+    const displayPic = document.getElementById("display-pic");
+    const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
+
+    if (userData?.profilePicture) {
+    displayPic.src = userData.profilePicture;
+    }
+
+  }
+
+  export function editPassword() {
+    const editPassword = document.querySelector(".pass-edit");
+    const updatePassword = document.querySelector(".pass-update")
+    const currPass = document.querySelector(".curr-pass");
+    const newPass = document.querySelector(".new-pass");
+    const confirmNewPass = document.querySelector(".confirm-new-pass");
+
+    editPassword.addEventListener("click", (e) =>{
+      e.preventDefault();
+
+      currPass.removeAttribute("readonly");
+      newPass.removeAttribute("readonly");
+      confirmNewPass.removeAttribute("readonly");
+      updatePassword.style.display = "inline-block"
+
+      currPass.value = ""
+      currPass.focus()
+    })
+   
+    updatePassword.addEventListener("click", (e) => {
+      e.preventDefault();
+    
+      const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
+      if (!userData) return;
+    
+      const current = currPass.value.trim();
+      const newPassword = newPass.value.trim();
+      const confirm = confirmNewPass.value.trim();
+    
+      if (current !== userData.password) {
+        alert("Current password is incorrect");
+        return;
+      }
+    
+      if (newPassword.length < 8) {
+        alert("New password must be at least 8 characters");
+        return;
+      }
+    
+      if (newPassword !== confirm) {
+        alert("Passwords do not match");
+        return;
+      }
+    
+      const updatedUser = {
+        ...userData,
+        password: newPassword
+      };
+    
+      localStorage.setItem("travelJournalUser", JSON.stringify(updatedUser));
+    
+      currPass.value = "*******";
+      newPass.value = "";
+      confirmNewPass.value = "";
+    
+      currPass.setAttribute("readonly", true);
+      newPass.setAttribute("readonly", true);
+      confirmNewPass.setAttribute("readonly", true);
+      updatePassword.style.display = "none"
+    
+      alert("Password updated successfully");
+    });
+    
+
+  }
+
+  export function deleteAccount() {
+      const deleteBtn = document.querySelector(".profile-delete");
+
+      deleteBtn.addEventListener("click", () => {
+        const userResponse = confirm("Are you sure you want to delete your account?");
+
+        if (userResponse) {
+            localStorage.clear()
+        } else {
+            
+        }
+        
+      });
+  };
+
+  export function shareJournal() {
+    const shareBtns = document.querySelectorAll(".share-btn");
+    
+    shareBtns.forEach(button => {
+      button.addEventListener("click", () => {
+        const entryId = button.getAttribute("data-id");
+        localStorage.setItem("currentEntryId", entryId);     
+        const currentEntryId = localStorage.getItem("currentEntryId");
+        const allEntries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+        const selectedEntry = allEntries.find(entry => entry.id == currentEntryId);    
+
+        const shareLink = `${location.origin}/share.html?entry=${entryId}`;
+
+        if (navigator.share) {
+          navigator.share({
+            title: selectedEntry.title,
+            text: "Check out my travel journal entry",
+            url: shareLink
+          });
+        } else {
+          navigator.clipboard.writeText(shareLink);
+          alert("Link copied to clipboard");
+        }
+      });
+    });
+  }
+
+  export function populateShare() {
+    if (window.location.href.includes("share.html")) {
+        
+      console.log("Sucessfully Shared");
+      
+      const userData = JSON.parse(localStorage.getItem("travelJournalUser"));
+      document.title = `mytraveljournal | ${userData.username}'s Entry`
+
+      const shareContainer = document.getElementById("share-wrapper");
+    
+      const entryId = localStorage.getItem("currentEntryId");
+      const allEntries = JSON.parse(localStorage.getItem("journalEntries")) || [];
+    
+      const selectedEntry = allEntries.find(entry => entry.id == entryId);
+
+
+      function capitalizeFirstLetter(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
+    
+      if (!selectedEntry || !shareContainer) {
+        shareContainer.innerHTML = "<p>No entry found.</p>";
+        return;
+      }
+    
+      shareContainer.innerHTML = `
+
+      <div class="readonly-badge">
+          This is a read-only shared journal entry
+      </div>
+
+        <h1 class="entry-title">${selectedEntry.title}</h1>
+      
+        <div class="entry-meta">
+          <span>📍 ${selectedEntry.place}</span>
+          <span>🌍 ${selectedEntry.country}</span>
+          <span>🧭 ${capitalizeFirstLetter(selectedEntry.type)}</span>
+          <span>📅 ${selectedEntry.startDate} - ${selectedEntry.endDate}</span>
+        </div>
+      
+        <div class="entry-hero">
+          <img src="${selectedEntry.mainImage}" alt="Mount Fuji main view">
+        </div>
+      
+        <section class="entry-gallery">
+        ${selectedEntry.images.map(img => `<img src="${img}" class="gallery-img" />`).join("")}
+        </section>
+      
+        <section class="entry-section">
+          <h3>Description</h3>
+          <p>${selectedEntry.description}</p>
+        </section>
+      
+        <section class="entry-section">
+          <h3>Experience</h3>
+          <p>${selectedEntry.story}</p>
+        </section>
+      
+        <div class="entry-tags">
+          ${selectedEntry.tags.map(tag => `<span>${tag}</span>`).join(" ")}
+        </div>
+      
+        <section class="entry-map">
+          <iframe
+            src="${selectedEntry.location}"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </section>
+      
+        <section class="share-cta">
+          <h2>Start Your Own Travel Journal</h2>
+          <p>Document your trips, upload photos, and relive your adventures.</p>
+          <a href="register.html">Start Journaling</a>
+        </section>
+        
+      `;
+      } else {
+        const shareContainer = document.getElementById("trip");
+        
+
+        shareContainer.style.display = "none"
+      }
+  }

@@ -1,3 +1,12 @@
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 export function setupAuthForms() {
     const regCon = document.querySelector(".reg-container");
     const regBtn = document.querySelector(".register-btn");
@@ -49,7 +58,7 @@ export function setupAuthForms() {
     [regForm, loginForm].forEach(form => {
       if (!form) console.log("NO FORM");
   
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
   
         const formType = form.closest(".form-box").id;
@@ -113,7 +122,9 @@ export function setupAuthForms() {
   
         if (formType === "register") {
           const email = form.querySelector("#email-input").value.trim();
-          const userData = { username: username.value.trim(), email, gender: gender.value, password: password.value, loggedIn: true };
+          const hashedPassword = await hashPassword(password.value);
+          
+          const userData = { username: username.value.trim(), email, gender: gender.value, password: hashedPassword, loggedIn: true };
           localStorage.setItem("travelJournalUser", JSON.stringify(userData));
           window.location.href = "journal.html";
         } else {

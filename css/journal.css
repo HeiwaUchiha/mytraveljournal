@@ -22,7 +22,7 @@
   }
 :root{
     --background: linear-gradient(rgba(244, 244, 244, 0.888), rgba(244, 244, 244, 0.888)), url(assets/freepik__adjust__873.jpg);
-    --hover: linear-gradient(rgba(244, 244, 244, 0.544), rgba(244, 244, 244, 0.544));
+    --hover: linear-gradient(#f4f4f48b, rgba(244, 244, 244, 0.544));
     --background1: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo1.png);
     --background2: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo2.png);
     --background3: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo3.png);
@@ -33,6 +33,7 @@
     --color-3a: #275642;
     --color-4: #cad1cd;
     --color-5: black;
+    --color-6: #27564255;
     /* --swiper-theme-color: #337357; */
     --shadow: 0px 1px 2px 0px #0000000F, 0px 1px 3px 0px #0000001A;
 }
@@ -47,9 +48,11 @@
     --color-2: #337357;
     --color-3: #d7e4d3;
     --color-3a: #adafac;
-    --color-5: white;
-    /* --swiper-theme-color: #d7e4d3; */
     --color-4: #505f59;
+    --color-5: white;
+    --color-6: #adafac55;
+    /* --swiper-theme-color: #d7e4d3; */
+    
 }
 .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
@@ -74,6 +77,21 @@
 .dash-details-1 p{
     text-align: center;
 }
+.user{
+    display: flex;
+    gap: 5px;
+    transition: 0.5s;
+    padding: 10px;
+    border-radius: 10px;
+}
+.user img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.user:hover{
+    background-color: var(--color-6);
+}
 .username{
     font-weight: 700;
     font-size: 16px;
@@ -83,7 +101,7 @@
     transition: 0.5s;
     cursor: pointer;
 }
-.username:hover{
+.user:hover  .username{
     color: var(--color-3);
 }
 .dash-details-2{
@@ -490,6 +508,13 @@
 .layer .delete-btn:hover{
     background: rgb(189, 2, 2);
 }
+.layer .share-btn{
+    background: rgb(17, 145, 250);
+    color: white;
+}
+.layer .share-btn:hover{
+    background: rgb(32, 32, 177);
+}
 
 @media (max-width: 536px){
     #trip-entry{
@@ -579,8 +604,8 @@
         top: 80px;
         right: 0;
         background-color: var(--color-2);
-        min-width: 140px;
-        padding: 10px 0 10px 0;
+        min-width: fit-content;
+        padding: 10px 10px 10px 10px;
         max-height: fit-content;
         overflow: auto;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

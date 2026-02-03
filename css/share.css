@@ -1,0 +1,267 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+.register-body{
+    background: var(--color-1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    src: url(/assets/MaterialSymbolsOutlined[FILL\,GRAD\,opsz\,wght].woff2) format('woff2');
+  }
+:root{
+    --background: linear-gradient(rgba(244, 244, 244, 0.888), rgba(244, 244, 244, 0.888)), url(assets/freepik__adjust__873.jpg);
+    --hover: linear-gradient(rgba(244, 244, 244, 0.544), rgba(244, 244, 244, 0.544));
+    --background1: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo1.png);
+    --background2: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo2.png);
+    --background3: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo3.png);
+    --background4: linear-gradient(rgba(191, 191, 191, 0.741), rgba(191, 191, 191, 0.741)), url(assets/demo4.png);
+    --color-1: #9faf9a;
+    --color-2: #d7e4d3;
+    --color-3: #337357;
+    --color-3a: #275642;
+    --color-4: #cad1cd;
+    --color-5: black;
+    --color-6: #27564255;
+    /* --swiper-theme-color: #337357; */
+    --shadow: 0px 1px 2px 0px #0000000F, 0px 1px 3px 0px #0000001A;
+}
+.dark-theme{
+    --background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/freepik__adjust__873.jpg);
+    --hover: linear-gradient(rgba(31, 31, 31, 0.4), rgba(31, 31, 31, 0.4));
+    --background1: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo1.png);
+    --background2: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo2.png);
+    --background3: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo3.png);
+    --background4: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), url(assets/demo4.png);
+    --color-1: #2e3e37;
+    --color-2: #337357;
+    --color-3: #d7e4d3;
+    --color-3a: #adafac;
+    --color-4: #505f59;
+    --color-5: white;
+    --color-6: #adafac55;
+    /* --swiper-theme-color: #d7e4d3; */
+}
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
+
+/* ----------- SHARED PAGE STYLES ------------ */
+
+#share-reg{
+    width: 100%;
+    height: 30px;
+    padding: 8px;
+    background: var(--color-1);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-3);
+    cursor: pointer;
+    transition: 0.5s;
+    
+}
+#share-reg:hover{
+    background: transparent;
+    border: 2px solid var(--color-1);
+    border-radius: 8px;
+    color: var(--color-1);
+    box-shadow: none;
+}
+
+/* ===== Shared Entry Wrapper ===== */
+#share-wrapper {
+    max-width: 900px;
+    margin: 8rem auto 4rem auto;
+    padding: 0 1rem;
+  }
+  
+  /* Read-only banner */
+  .readonly-badge {
+    background: #eef2f5;
+    color: #555;
+    text-align: center;
+    padding: 0.6rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* ===== Entry Header ===== */
+  .entry-title {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-3);
+  }
+  
+  .entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.95rem;
+    color: var(--color-3a);
+    margin-bottom: 1.5rem;
+  }
+  
+  .entry-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  /* ===== Main Image ===== */
+  .entry-hero {
+    width: 100%;
+    height: 420px;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  
+  .entry-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* ===== Gallery ===== */
+  .entry-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.7rem;
+    margin-bottom: 2rem;
+  }
+  
+  .entry-gallery img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* ===== Text Sections ===== */
+  .entry-section {
+    margin-bottom: 2rem;
+  }
+  
+  .entry-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-3);
+  }
+  
+  .entry-section p {
+    line-height: 1.7;
+    color: var(--color-5);
+    font-size: 1rem;
+    text-align: justify;
+  }
+  
+  /* ===== Tags ===== */
+  .entry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .entry-tags span {
+    background: #f0f3f6;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
+  /* ===== Map Preview ===== */
+  .entry-map {
+    margin-bottom: 3rem;
+  }
+  
+  .entry-map iframe {
+    width: 100%;
+    height: 300px;
+    border-radius: 14px;
+    border: none;
+  }
+  
+  /* ===== CTA Section ===== */
+  .share-cta {
+    background: var(--color-2);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .share-cta h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-5);
+  }
+  
+  .share-cta p {
+    color: var(--color-3);
+    margin-bottom: 1.2rem;
+  }
+  
+  .share-cta a {
+    display: inline-block;
+    background: var(--color-3);
+    color: var(--color-4);
+    padding: 0.7rem 1.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  /* ===== Footer Watermark ===== */
+  .share-footer {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: var(--color-3);
+  }
+  
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .entry-title {
+      font-size: 1.8rem;
+    }
+  
+    .entry-hero {
+      height: 260px;
+    }
+  
+    .entry-gallery img {
+      height: 100px;
+    }
+  
+    .share-cta h2 {
+      font-size: 1.5rem;
+    }
+  }
+  

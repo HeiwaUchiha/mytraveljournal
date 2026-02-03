@@ -52,6 +52,7 @@ export function viewTripEntry(filteredEntries = null) {
         <button class="view-btn" data-id="${entry.id}"><i class="material-symbols-outlined">visibility</i> View</button>
         <button class="edit-btn" data-id="${entry.id}"><i class="material-symbols-outlined">edit</i> Edit</button>
         <button class="delete-btn" data-id="${entry.id}"><i class="material-symbols-outlined">delete</i> Delete</button>
+        <button class="share-btn" data-id="${entry.id}"><i class="material-symbols-outlined">share</i> Share</button>
       </div>
     `;
 

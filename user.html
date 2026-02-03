@@ -19,7 +19,7 @@
        <nav>
             <a href="/index.html" id="logo"><img src="/assets/logo-dark-transparent.png" alt=""></a>
             <div class="dash-details-1">
-                <p>Hello <button class="username"></button></p>
+                <a href="" class="user"><img src="assets/user.png" class="display-pic" alt=""><p>Hello <button class="username"></button></p></a>
                 <button id="mode"><img src="/assets/moon.png" alt="Switch to Dark-Mode"></button>
                 <button class="btn logout">Log Out</button>
             </div>
@@ -48,24 +48,25 @@
         <h2>Profile Information</h2>
         <div class="profile-info">
           <div class="pic">
-            <i class="material-symbols-outlined">person</i>
-            <button id="change-pic">Change Photo</button>
+            <input type="file" name="profile-pic" id="profile-pic" accept="image/*" hidden>
+            <img src="assets/user.png" id="display-pic">
+            <button id="change-pic" disabled>Change Photo</button>
           </div>
           <div class="user-details">
-            <span><label for="username">Username:</label><input type="text" name="username" value=""></span>
-            <span><label for="email">Email:</label><input type="email" name="email" value=""></span>
+            <span><label for="username">Username:</label><input id="user-change" type="text" name="username" value="" readonly></span>
+            <span><label for="email">Email:</label><input id="email-change" type="email" name="email" value="" readonly></span>
             <span>
               <label for="gender">Gender:</label>
-              <select id="gender">
+              <select id="gender-change">
                 <option value="" hidden></option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
           </span>
-            <span>
-              <span></span>
-              <button type="submit" class="profile-edit">Save Changes</button>
+            <span class="profile-buttons">
+              <button  class="profile-change profile-edit">Edit Profile</button>
+              <button type="submit" class="profile-change profile-save">Save Changes</button>
             </span>
           </div>
         </div>
@@ -74,10 +75,13 @@
         <div class="ch-password">
           <h2>Change Password</h2>
             <div class="password-details">
-              <span><label for="current-password">Current Password:</label><input type="password" value=""></span>
-              <span><label for="new-password">New Password:</label><input type="password" value=""></span>
-              <span><label for="confirm-new-password">Confirm New Password:</label><input type="password" value=""></span>
-              <button type="submit" class="profile-edit pass-change">Update Password</button>
+              <span><label for="current-password">Current Password:</label><input class="curr-pass" type="password" value="" readonly></span>
+              <span><label for="new-password">New Password:</label><input class="new-pass" type="password" value="" readonly></span>
+              <span><label for="confirm-new-password">Confirm New Password:</label><input class="confirm-new-pass" type="password" value="" readonly></span>
+              <span class="password-btns">
+                <button class="profile-change pass-edit">Edit Password</button>
+                <button type="submit" class="profile-change pass-update">Update Password</button>
+              </span>
             </div>
         </div>
 
@@ -85,7 +89,7 @@
           <h2>Danger Zone</h2>
             <div class="delete-acc">
               <p>Permanently delete your account and all associated data. This action cannot be undone</p>
-              <button type="submit" class="profile-delete">Delete Account</button>
+              <button  class="profile-delete">Delete Account</button>
             </div>
         </div>
     </section>
